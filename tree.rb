@@ -11,7 +11,7 @@ class Tree
   end
 
   def add_word(word, tree)
-    tree.find{ |n| n.value = word } || add_node(word, tree)
+    tree.find{ |n| n.value == word } || add_node(word, tree)
   end
 
   def add_node(word, tree)
