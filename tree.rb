@@ -22,13 +22,13 @@ class Tree
     words = route.split('/')
     base  = @root
     word_found =
-      words.all? { |word| base = find_character(word, base.next) }
+      words.all? { |word| base = find_word(word, base.next) }
     yield word_found, base if block_given?
     base
   end
 
-  def find_character(character, trie)
-    trie.find { |n| n.value == character }
+  def find_word(word, tree)
+    tree.find { |n| n.value == word }
   end
 
   def include?(route)
