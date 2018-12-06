@@ -4,11 +4,12 @@ class Tree
     @root = Node.new('*')
   end
 
-  def add_route(route)
+  def add_route(route, name)
     words = route.split('/')
     base = @root
     words.each { |word| base = add_word(word, base.next) }
     base.route = true
+    base.name  = name
   end
 
   def add_word(word, tree)
