@@ -1,3 +1,4 @@
+require 'pry'
 class Tree
   def initialize
     @root = Node.new('*')
@@ -6,12 +7,12 @@ class Tree
   def add_route(route)
     words = route.split('/')
     base = @root
-    words.each{ |word| base = add_word(word, base.next) }
+    words.each { |word| base = add_word(word, base.next) }
     base.route = true
   end
 
   def add_word(word, tree)
-    tree.find{ |n| n.value == word } || add_node(word, tree)
+    tree.find { |n| n.value == word } || add_node(word, tree)
   end
 
   def add_node(word, tree)
@@ -28,7 +29,7 @@ class Tree
   end
 
   def find_word(word, tree)
-    tree.find { |n| n.value == word }
+    tree.find { |n| n.validate_value?(word) }
   end
 
   def include?(route)

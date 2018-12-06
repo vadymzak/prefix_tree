@@ -7,4 +7,10 @@ class Node
     @route = false
     @next  = []
   end
+
+  def validate_value?(word)
+    return true if value.start_with? ':'
+
+    value == word
+  end
 end
