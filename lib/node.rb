@@ -18,12 +18,13 @@ class Node
     end
   end
 
-
   def valid_exact?(word)
     value == word
   end
 
   def valid_pattern(word)
-    {value => word}
+    return { value => word, 'name' => @name } if @route
+
+    { value => word }
   end
 end

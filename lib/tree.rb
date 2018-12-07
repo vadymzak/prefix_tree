@@ -1,7 +1,10 @@
 require 'pry'
 class Tree
+  attr_reader :route_obj
+
   def initialize
     @root = Node.new('*')
+    @route_obj = {}
   end
 
   def add_route(route, name)
@@ -30,7 +33,15 @@ class Tree
   end
 
   def find_word(word, tree)
-    tree.find { |n| n.validate_value?(word) }
+    tree.find { |n| create_obj(n.validate_value?(word)) }
+  end
+
+  def create_obj(value)
+    if value.is_a?(Hash)
+      @route_obj.merge!(value)
+    else
+      value
+    end
   end
 
   def include?(route)
