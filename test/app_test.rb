@@ -11,7 +11,6 @@ class AppTest < Minitest::Test
   end
 
   def test_true_on_valid_route_1
-    p @tree.class
     assert_equal @tree.include?('account/workspaces/12/members/admin'), true
     p @tree.route_obj
   end
