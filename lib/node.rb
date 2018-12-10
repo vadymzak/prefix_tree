@@ -23,8 +23,8 @@ class Node
   end
 
   def valid_pattern(word)
-    { value => word }
+    return { value => word, 'name' => name } if route
 
-    { value => word, 'name' => :name } if :route
+    { value => word }
   end
 end
