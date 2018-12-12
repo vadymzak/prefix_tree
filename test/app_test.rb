@@ -5,9 +5,9 @@ require_relative '../lib/node'
 class AppTest < Minitest::Test
   def setup
     @tree = Tree.new.freeze
-    @tree.add_route('account/workspaces/:workspace_id/members/:id', 'PUT').freeze
-    @tree.add_route('account/workspaces/:workspace_id/projects/:id', 'GET').freeze
-    @tree.add_route('account/task/:id', 'POST').freeze
+    @tree.add_route('account/workspaces/:workspace_id/members/:id', 'account_workspaces_members').freeze
+    @tree.add_route('account/workspaces/:workspace_id/projects/:id', 'account_workspaces_projects').freeze
+    @tree.add_route('account/task/:id', 'account_task').freeze
   end
 
   def test_true_on_valid_route_1
@@ -21,6 +21,7 @@ class AppTest < Minitest::Test
 
   def test_true_on_valid_route_2
     assert_equal @tree.include?('account/task/5'), true
+    p @tree.route_obj
   end
 
   def test_false_on_not_valid_route_2
@@ -29,6 +30,7 @@ class AppTest < Minitest::Test
 
   def test_true_on_valid_route_3
     assert_equal @tree.include?('account/workspaces/aaa/projects/12'), true
+    p @tree.route_obj
   end
 
   def test_false_on_not_valid_route_3
